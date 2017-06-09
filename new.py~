@@ -1,0 +1,13 @@
+lstm_size_list = [64,128,256,501]
+lstm_layers_list = [1]
+batch_size_list = [100,250,500,700]
+n_epochs_list = [1,10,20,30]
+
+all_hyperpara_list = []
+for a in lstm_size_list:
+    for b in lstm_layers_list:
+        for c in batch_size_list:
+            for d in n_epochs_list:
+                all_hyperpara_list.append((a,b,c,d))
+
+print len(all_hyperpara_list)
