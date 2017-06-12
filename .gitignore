@@ -1,3 +1,10 @@
+# Ignore dataset files becaz they are large
+*.txt
+*.zip
+*.json
+*.csv
+*.tsv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
