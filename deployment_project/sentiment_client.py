@@ -46,9 +46,9 @@ def main(_):
   import pickle
   import numpy as np
   pkl_file = open('test_x.pkl', 'rb')
-  test_x = np.array( pickle.load(pkl_file)[:12] )
+  test_x = np.array( pickle.load(pkl_file)[:1] )
   pkl_file = open('test_y.pkl', 'rb')
-  test_y = np.array( pickle.load(pkl_file)[:12] ) 
+  test_y = np.array( pickle.load(pkl_file)[:1] ) 
 
   data, label= test_x.astype(np.float32),test_y.astype(np.float32) 
   print(np.shape(data), np.shape(label))

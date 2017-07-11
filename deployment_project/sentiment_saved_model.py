@@ -107,8 +107,7 @@ def main(_):
 
 	hyperpara_index = 0 #Hyperparameter S.No.
 
-	hyperameter_tuple = all_hyperpara_list[0]
-	    
+	hyperameter_tuple = all_hyperpara_list[0] 
 	#Current set of Hyperparmeters
 	lstm_size = hyperameter_tuple[0]
 	lstm_layers = hyperameter_tuple[1]
@@ -127,6 +126,7 @@ def main(_):
 	#Build Network
 	lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)
 	cell = tf.contrib.rnn.MultiRNNCell([lstm]*lstm_layers)
+	
 	initial_state = cell.zero_state(tf.shape(X)[0] , tf.float32)
 	outputs, final_state = tf.nn.dynamic_rnn(cell, X, initial_state = initial_state)
 	predictions = tf.contrib.layers.fully_connected(outputs[:, -1],1, activation_fn=tf.tanh)
@@ -164,25 +164,31 @@ def main(_):
 	feature_configs = {'x': tf.FixedLenFeature(shape=[784], dtype=tf.float32),}
 	tf_example = tf.parse_example(serialized_tf_example, feature_configs)
 	
+	
 	#For every Epoch
 	for e in range(n_epochs):
-		state = sess.run(initial_state)
+		count_=0
 		batch_index = 1 #represents index of batch
 
 		#For every batch
 		for ii, (x, y) in enumerate(get_batches(train_x, train_y, batch_size), 1):
+		    if(count_==0):
+			state = sess.run(initial_state, feed_dict =  {X: x, Y: np.reshape(y,(len(y),1))})
+
 		    feed = {X: x, Y: np.reshape(y,(len(y),1)), initial_state: state}
 		    state, loss_,  _ = sess.run([final_state, loss, optimizer], feed_dict=feed)
 
 		    #represents index of batch
 		    batch_index +=1
-
+		   
+		    count_+=1
 		#All epochs completed
 		print('Training Completed')
 
   
   
 	print 'Done training!'
+	
 
 	# Export model
 	# WARNING(break-tutorial-inline-code): The following code snippet is
