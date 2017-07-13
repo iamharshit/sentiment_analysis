@@ -13,6 +13,7 @@
   > bazel build //tensorflow_serving/example:sentiment_client
   > bazel-bin/tensorflow_serving/example/sentiment_client --num_tests=1000 --server=localhost:9000
 
+NOTE: For requesting server from remote machine(i.e not localhost) just replace localhost with the server's IP in the last command
 ```
 ### Reference
 
