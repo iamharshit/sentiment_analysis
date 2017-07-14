@@ -103,7 +103,15 @@ AWS file structure
         │   ├── samarth_data.ipynb   
         │   │   
         │   └── wrong_result.ipynb
-        │   
+        │
+        ├── serving (Contains Production code)
+        |   ├── tensorflow_serving
+        |       ├── example
+        |           ├── BUILD
+        |           ├── sentiment_saved_mode.py
+        |           ├── sentiment_client.py
+        |
+        |
         ├── Results   (Contains results of Hyperparameter tuning)
         │   ├── Result6B    
         │   ├── Result840B            
